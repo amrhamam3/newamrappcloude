@@ -1,0 +1,66 @@
+name: Android Build
+
+# بيتشغل تلقائيًا مع كل push أو Pull Request على main، وكمان ممكن تشغّله يدويًا
+# من تبويب Actions في الريبو (workflow_dispatch).
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Build Debug & Release APK
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # المشروع مبني بـ JDK 17 (compileOptions في app/build.gradle) — لازم
+      # نفس النسخة هنا وإلا الـ build هيفشل بأخطاء "invalid source release".
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      # بيسرّع البنايات الجاية جدًا (بيكاش الـ Gradle wrapper distribution
+      # ومجلد .gradle/caches بدل ما ينزلهم من الإنترنت كل مرة).
+      - name: Cache Gradle packages
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: gradle-${{ runner.os }}-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+          restore-keys: |
+            gradle-${{ runner.os }}-
+
+      # gradlew لازم يبقى قابل للتنفيذ — لو الملف اتحفظ من ويندوز أو من أداة
+      # مضغوطة بتشيل صلاحيات التنفيذ، الـ build بيفشل فورًا بـ "Permission denied".
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+
+      - name: Build debug APK
+        run: ./gradlew assembleDebug --stacktrace
+
+      - name: Build release APK (unsigned)
+        run: ./gradlew assembleRelease --stacktrace
+
+      # بيرفع الـ APKs كـ Artifacts في نفس صفحة الـ workflow run، تقدر تنزلهم
+      # مباشرة من GitHub من غير ما تحتاج تعمل build محلي.
+      - name: Upload debug APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: app-debug
+          path: app/build/outputs/apk/debug/*.apk
+          if-no-files-found: error
+
+      - name: Upload release APK (unsigned)
+        uses: actions/upload-artifact@v4
+        with:
+          name: app-release-unsigned
+          path: app/build/outputs/apk/release/*.apk
+          if-no-files-found: error
