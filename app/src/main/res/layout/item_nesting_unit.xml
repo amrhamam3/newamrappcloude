@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/unitCard" android:layout_width="match_parent" android:layout_height="wrap_content"
+    android:orientation="vertical" android:padding="10dp" android:layout_marginTop="8dp" android:background="@drawable/bg_nesting_section">
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:gravity="center_vertical">
+        <TextView android:id="@+id/unitTitle" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="وحدة 01" android:textColor="@color/accent_orange" android:textStyle="bold" android:textSize="14sp"/>
+        <Button android:id="@+id/removeUnit" android:layout_width="wrap_content" android:layout_height="36dp" android:text="حذف" android:textColor="@color/text_primary" android:backgroundTint="@color/warning_red" android:textSize="11sp"/>
+    </LinearLayout>
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal">
+        <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical" android:layout_marginEnd="5dp">
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="الطول mm" android:textColor="@color/accent_orange" android:textSize="11sp"/>
+            <EditText android:id="@+id/unitLength" android:layout_width="match_parent" android:layout_height="44dp" android:inputType="numberDecimal" android:text="600" android:textColor="@color/text_primary" android:background="@drawable/bg_nesting_input"/>
+        </LinearLayout>
+        <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical" android:layout_marginStart="5dp">
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="العرض mm" android:textColor="@color/accent_orange" android:textSize="11sp"/>
+            <EditText android:id="@+id/unitWidth" android:layout_width="match_parent" android:layout_height="44dp" android:inputType="numberDecimal" android:text="400" android:textColor="@color/text_primary" android:background="@drawable/bg_nesting_input"/>
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_marginTop="4dp">
+        <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical" android:layout_marginEnd="5dp">
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="الكمية" android:textColor="@color/accent_orange" android:textSize="11sp"/>
+            <EditText android:id="@+id/unitQuantity" android:layout_width="match_parent" android:layout_height="44dp" android:inputType="number" android:text="1" android:textColor="@color/text_primary" android:background="@drawable/bg_nesting_input"/>
+        </LinearLayout>
+        <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical" android:layout_marginStart="5dp">
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="الاتجاه" android:textColor="@color/accent_orange" android:textSize="11sp"/>
+            <Spinner android:id="@+id/unitOrientation" android:layout_width="match_parent" android:layout_height="44dp"/>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

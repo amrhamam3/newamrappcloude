@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_dark">
+    <LinearLayout
+        android:id="@+id/slicerToolsContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="14dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/slicer_header"
+            android:textColor="@color/text_primary"
+            android:textSize="26sp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="@string/slicer_tools_subtitle"
+            android:textColor="@color/text_secondary"
+            android:textSize="13sp"/>
+
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:columnCount="2"
+            android:useDefaultMargins="true">
+
+            <FrameLayout
+                android:id="@+id/nestingToolCard"
+                android:layout_width="0dp"
+                android:layout_height="190dp"
+                android:layout_columnWeight="1"
+                android:background="@drawable/bg_dialog_panel"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground">
+
+                <ImageView
+                    android:id="@+id/nestingToolIcon"
+                    android:layout_width="112dp"
+                    android:layout_height="112dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/nesting_feature_icon"
+                    android:contentDescription="@string/nesting_title"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|center_horizontal"
+                    android:layout_marginBottom="10dp"
+                    android:text="@string/nesting_title"
+                    android:textColor="@color/text_primary"
+                    android:textSize="16sp"
+                    android:textStyle="bold"/>
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/requestToolCard"
+                android:layout_width="0dp"
+                android:layout_height="190dp"
+                android:layout_columnWeight="1"
+                android:background="@drawable/bg_dialog_panel"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground">
+
+                <ImageView
+                    android:layout_width="112dp"
+                    android:layout_height="112dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/request_feature_icon"
+                    android:contentDescription="@string/request_title"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|center_horizontal"
+                    android:layout_marginBottom="10dp"
+                    android:text="@string/request_title"
+                    android:textColor="@color/text_primary"
+                    android:textSize="16sp"
+                    android:textStyle="bold"/>
+            </FrameLayout>
+        </GridLayout>
+    </LinearLayout>
+</ScrollView>
